@@ -21,6 +21,7 @@ def download():
         resp.content_length = 9_437_184  # Inform total size
     else:
         resp = flask.Response("".join([row for row in _generate_random_csv()]))
+    resp.headers["X-STREAMING"] = str(streaming).lower()  # For testing
     resp.mimetype = "text/csv"
 
     return resp
